@@ -18,6 +18,7 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import User from "./pages/user";
+import Verify from "./pages/verify"; // Import the new Verify component
 import { chainConfig } from "./pages/config/config.js";
 import {
   Card,
@@ -84,7 +85,7 @@ function Navbar() {
         padding: 0,
         gap: '1.5rem'
       }}>
-        {['Home', 'blogs', 'contact', 'user'].map((path) => (
+        {['Home', 'verify', 'blogs', 'contact', 'user'].map((path) => (
           <li key={path}>
             <Link
               to={path === 'Home' ? '/' : `/${path}`}
@@ -314,7 +315,7 @@ function App() {
     <>
       <div style={{ minHeight: 'calc(100vh - 6rem)' }}>
         <div style={{
-          background: '#3e5a3e', // Darker green shade
+          background: '#3e5a3e',
           padding: '1rem',
           display: 'flex',
           alignItems: 'center',
@@ -344,6 +345,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
+                    <Route path="verify" element={<Verify />} /> {/* New route for verify */}
                     <Route path="blogs" element={<Blogs />} />
                     <Route path="contact" element={<Contact />} />
                     <Route path="user" element={<User />} />
@@ -365,18 +367,6 @@ function App() {
               }}
             >
               Log Out
-            </button>
-            <button
-              onClick={getUserInfo}
-              onMouseEnter={() => setButtonHover(prev => ({ ...prev, userInfo: true }))}
-              onMouseLeave={() => setButtonHover(prev => ({ ...prev, userInfo: false }))}
-              style={{
-                ...buttonBaseStyle,
-                marginTop: '0.75rem',
-                ...(buttonHover.userInfo ? buttonHoverStyle : {})
-              }}
-            >
-              Get User Info
             </button>
             <button
               onClick={get_aidrop}

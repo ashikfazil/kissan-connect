@@ -296,7 +296,9 @@ function App() {
         setProperties([...properties, newProperty]);
         currentDrawing.layer.remove();
       }
-      const txHash = await mintNFt(hash);
+      // Convert hash to Buffer using hex encoding
+      const hashBuffer = Buffer.from(hash!.replace(/^0x/, ''), 'hex');
+      const txHash = await mintNFt(hashBuffer.toString('hex')); // Pass hex string to mintNFt
       setTransactionHash(txHash);
       setShowHashPopup(true);
       setShowForm(false);
